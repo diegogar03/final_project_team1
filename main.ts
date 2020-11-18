@@ -32,7 +32,13 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.B, function () {
     playing = 0
-    basic.clearScreen()
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
     direction = 0
     stack = 0
     Col = 0
@@ -47,5 +53,20 @@ let row = 0
 row = 4
 playing = 1
 basic.forever(function () {
-	
+    if (playing) {
+        led.unplot(Col, row)
+        if (direction) {
+            Col += -1
+            if (Col == 0) {
+                direction = 0
+            }
+        } else {
+            Col += 1
+            if (Col == 4) {
+                direction = 1
+            }
+        }
+        led.plot(Col, row)
+        basic.pause(100)
+    }
 })
