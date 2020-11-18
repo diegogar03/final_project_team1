@@ -1,27 +1,29 @@
 input.onButtonPressed(Button.A, function () {
     if (row < 4) {
-        if (row != stack) {
+        if (Col != stack) {
             playing = 0
             basic.pause(1000)
             basic.showLeds(`
+                . . # . .
+                . . # . .
+                . . # . .
                 . . . . .
-                . . . . .
-                . . . . .
-                . . . . .
-                . . . . .
+                . . # . .
                 `)
             basic.showIcon(IconNames.No)
+            music.playMelody("F B E A D G B F ", 120)
         } else if (row == 0) {
             playing = 0
             basic.pause(1000)
             basic.showLeds(`
+                . . # . .
+                . . # . .
+                . . # . .
                 . . . . .
-                . . . . .
-                . . . . .
-                . . . . .
-                . . . . .
+                . . # . .
                 `)
             basic.showIcon(IconNames.Happy)
+            music.playMelody("G B A G C5 B A B ", 120)
         } else {
             row += -1
         }
@@ -45,9 +47,44 @@ input.onButtonPressed(Button.B, function () {
     row = 4
     playing = 1
 })
+input.onPinPressed(TouchPin.P1, function () {
+    for (let index = 0; index < 2; index++) {
+        basic.showLeds(`
+            . # # # .
+            # . . . #
+            # . . . #
+            # . . . #
+            . # # # .
+            `)
+        basic.showLeds(`
+            . . # . .
+            . # . # .
+            # . . . #
+            . # . # .
+            . . # . .
+            `)
+    }
+    if (true) {
+        basic.showLeds(`
+            . . # . .
+            . . # . .
+            # # # # #
+            . . # . .
+            . . # . .
+            `)
+    } else if (false) {
+        basic.showLeds(`
+            . # . # .
+            . # . # .
+            . # . # .
+            . . . . .
+            # # # # #
+            `)
+    }
+})
 let direction = 0
-let Col = 0
 let stack = 0
+let Col = 0
 let playing = 0
 let row = 0
 row = 4
